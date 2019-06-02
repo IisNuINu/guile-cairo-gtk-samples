@@ -1,0 +1,744 @@
+cairo-font-options-create
+- Function: cairo-font-options-create ==>(RET `<cairo-font-options-t>')
+          a newly allocated `<cairo-font-options-t>'. Free with
+          `cairo-font-options-destroy'. This function always returns a valid
+          for this with `cairo-font-options-status'.
+cairo-font-options-copy
+- Function: cairo-font-options-copy (ORIGINAL `<cairo-font-options-t>') ==>(RET
+`<cairo-font-options-t>')
+          a `<cairo-font-options-t>'
+          a newly allocated `<cairo-font-options-t>'. Free with
+          `cairo-font-options-destroy'. This function always returns a valid
+          for this with `cairo-font-options-status'.
+cairo-font-options-merge
+- Function: cairo-font-options-merge (OPTIONS `<cairo-font-options-t>')(OTHER
+`<cairo-font-options-t>')
+          a `<cairo-font-options-t>'
+          another `<cairo-font-options-t>'
+cairo-font-options-hash
+- Function: cairo-font-options-hash (OPTIONS `<cairo-font-options-t>') ==>(RET
+          a `<cairo-font-options-t>'
+cairo-font-options-set-antialias
+- Function: cairo-font-options-set-antialias (OPTIONS
+`<cairo-font-options-t>')(ANTIALIAS `<cairo-antialias-t>')
+          a `<cairo-font-options-t>'
+cairo-font-options-get-antialias
+- Function: cairo-font-options-get-antialias (OPTIONS `<cairo-font-options-t>')
+==>(RET `<cairo-antialias-t>')
+          a `<cairo-font-options-t>'
+cairo-font-options-set-hint-style
+- Function: cairo-font-options-set-hint-style (OPTIONS
+`<cairo-font-options-t>')(HINT-STYLE `<cairo-hint-style-t>')
+     `<cairo-hint-style-t>' for full details.
+          a `<cairo-font-options-t>'
+cairo-font-options-get-hint-style
+- Function: cairo-font-options-get-hint-style (OPTIONS `<cairo-font-options-t>')
+==>(RET `<cairo-hint-style-t>')
+     documentation for `<cairo-hint-style-t>' for full details.
+          a `<cairo-font-options-t>'
+cairo-font-options-set-hint-metrics
+- Function: cairo-font-options-set-hint-metrics (OPTIONS
+`<cairo-font-options-t>')(HINT-METRICS `<cairo-hint-metrics-t>')
+     documentation for `<cairo-hint-metrics-t>' for full details.
+          a `<cairo-font-options-t>'
+cairo-font-face-get-type
+- Function: cairo-font-face-get-type (FONT-FACE `<cairo-font-face-t>') ==>(RET
+`<cairo-font-type-t>')
+     See `<cairo-font-type-t>' for available types.
+cairo-image-surface-create
+- Function: cairo-image-surface-create (FORMAT `<cairo-format-t>')(WIDTH
+`<int>')(HEIGHT `<int>') ==>(RET `<cairo-surface-t>')
+          `cairo-surface-status' to check for this.
+cairo-image-surface-get-format
+- Function: cairo-image-surface-get-format (SURFACE `<cairo-surface-t>') ==>(RET
+`<cairo-format-t>')
+          a `<cairo-image-surface-t>'
+cairo-image-surface-get-width
+- Function: cairo-image-surface-get-width (SURFACE `<cairo-surface-t>') ==>(RET
+          a `<cairo-image-surface-t>'
+cairo-matrix-translate
+- Function: cairo-matrix-translate (MATRIX `<cairo-matrix-t>')(TX `<double>')(TY
+cairo-matrix-invert
+- Function: cairo-matrix-invert (MATRIX `<cairo-matrix-t>') ==>(RET
+`<cairo-status-t>')
+          a `<cairo-matrix-t>'
+cairo-matrix-multiply
+- Function: cairo-matrix-multiply (RESULT `<cairo-matrix-t>')(A
+`<cairo-matrix-t>')(B `<cairo-matrix-t>')
+          a `<cairo-matrix-t>' in which to store the result
+          a `<cairo-matrix-t>'
+          a `<cairo-matrix-t>'
+cairo-matrix-transform-distance
+- Function: cairo-matrix-transform-distance (MATRIX `<cairo-matrix-t>') ==>(DX
+     `cairo-matrix-transform-point' except that the translation components of
+          a `<cairo-matrix-t>'
+cairo-matrix-transform-point
+- Function: cairo-matrix-transform-point (MATRIX `<cairo-matrix-t>') ==>(X
+          a `<cairo-matrix-t>'
+cairo-copy-path
+- Function: cairo-copy-path (CR `<cairo-t>') ==>(RET `<cairo-path-t>')
+     `<cairo-path-t>'. See `<cairo-path-data-t>' for hints on how to iterate
+   would be returned by `cairo-status'.     In either case, `path->status' will be set to `CAIRO_STATUS_NO_MEMORY'
+          should call `cairo-path-destroy' when finished with it.
+cairo-copy-path-flat
+- Function: cairo-copy-path-flat (CR `<cairo-t>') ==>(RET `<cairo-path-t>')
+     `<cairo-path-t>'. See `<cairo-path-data-t>' for hints on how to iterate
+     This function is like `cairo-copy-path' except that any curves in the path
+   would be returned by `cairo-status'.     cr
+          should call `cairo-path-destroy' when finished with it.
+cairo-append-path
+- Function: cairo-append-path (CR `<cairo-t>')(PATH `<cairo-path-t>')
+     value from one of `cairo-copy-path' or `cairo-copy-path-flat' or it may be
+     constructed manually. See `<cairo-path-t>' for details on how the path data
+cairo-get-current-point
+- Function: cairo-get-current-point (CR `<cairo-t>') ==>(X `<double>')(Y
+     `cairo-new-path', `cairo-move-to', `cairo-line-to', `cairo-curve-to',
+     `cairo-arc', `cairo-rel-move-to', `cairo-rel-line-to',
+     `cairo-rel-curve-to', `cairo-arc', `cairo-text-path',
+     `cairo-stroke-to-path'
+cairo-new-path
+- Function: cairo-new-path (CR `<cairo-t>')
+cairo-new-sub-path
+- Function: cairo-new-sub-path (CR `<cairo-t>')
+     started with `cairo-move-to'.
+     A call to `cairo-new-sub-path' is particularly useful when beginning a new
+     sub-path with one of the `cairo-arc' calls. This makes things easier as it
+     for a call to `cairo-move-to'.
+cairo-close-path
+- Function: cairo-close-path (CR `<cairo-t>')
+     the current sub-path, (the most recent point passed to `cairo-move-to'),
+     The behavior of `cairo-close-path' is distinct from simply calling
+     `cairo-line-to' with the equivalent coordinate in the case of stroking.
+     element, (which can be seen in `cairo-copy-path' for example). This can
+cairo-arc
+- Function: cairo-arc (CR `<cairo-t>')(XC `<double>')(YC `<double>')(RADIUS
+     `cairo-arc-negative' to get the arc in the direction of decreasing angles.
+cairo-arc-negative
+- Function: cairo-arc-negative (CR `<cairo-t>')(XC `<double>')(YC
+     See `cairo-arc' for more details. This function differs only in the
+cairo-curve-to
+- Function: cairo-curve-to (CR `<cairo-t>')(X1 `<double>')(Y1 `<double>')(X2
+     If there is no current point before the call to `cairo-curve-to' this
+cairo-line-to
+- Function: cairo-line-to (CR `<cairo-t>')(X `<double>')(Y `<double>')
+     If there is no current point before the call to `cairo-line-to' this
+cairo-move-to
+- Function: cairo-move-to (CR `<cairo-t>')(X `<double>')(Y `<double>')
+cairo-rectangle
+- Function: cairo-rectangle (CR `<cairo-t>')(X `<double>')(Y `<double>')(WIDTH
+cairo-glyph-path
+- Function: cairo-glyph-path (CR `<cairo-t>')(GLYPHS
+`<cairo-glyph-t>')(NUM-GLYPHS `<int>')
+     filled, achieves an effect similar to that of `cairo-show-glyphs'.
+cairo-text-path
+- Function: cairo-text-path (CR `<cairo-t>')(UTF8 `<char>')
+     filled, achieves an effect similar to that of `cairo-show-text'.
+     Text conversion and positioning is done similar to `cairo-show-text'.
+     Like `cairo-show-text', After this call the current point is moved to the
+     `cairo-text-path' without having to set current point in between.
+     NOTE: The `cairo-text-path' function call is part of what the cairo
+     text-using applications. See `cairo-glyph-path' for the "real" text path
+cairo-rel-curve-to
+- Function: cairo-rel-curve-to (CR `<cairo-t>')(DX1 `<double>')(DY1
+     Relative-coordinate version of `cairo-curve-to'. All offsets are relative
+cairo-rel-line-to
+- Function: cairo-rel-line-to (CR `<cairo-t>')(DX `<double>')(DY `<double>')
+     Relative-coordinate version of `cairo-line-to'. Adds a line to the path
+cairo-rel-move-to
+- Function: cairo-rel-move-to (CR `<cairo-t>')(DX `<double>')(DY `<double>')
+cairo-pattern-add-color-stop-rgb
+- Function: cairo-pattern-add-color-stop-rgb (PATTERN
+`<cairo-pattern-t>')(OFFSET `<double>')(RED `<double>')(GREEN `<double>')(BLUE
+     The color is specified in the same way as in `cairo-set-source-rgb'.
+          a `<cairo-pattern-t>'
+cairo-pattern-add-color-stop-rgba
+- Function: cairo-pattern-add-color-stop-rgba (PATTERN
+`<cairo-pattern-t>')(OFFSET `<double>')(RED `<double>')(GREEN `<double>')(BLUE
+     The color is specified in the same way as in `cairo-set-source-rgba'.
+          a `<cairo-pattern-t>'
+cairo-pattern-get-color-stop-rgba
+- Function: cairo-pattern-get-color-stop-rgba (PATTERN
+`<cairo-pattern-t>')(INDEX `<int>') ==>(RET `<cairo-status-t>')(OFFSET
+     `cairo-pattern-get-color-stop-count'.
+          a `<cairo-pattern-t>'
+cairo-pattern-create-rgb
+- Function: cairo-pattern-create-rgb (RED `<double>')(GREEN `<double>')(BLUE
+`<double>') ==>(RET `<cairo-pattern-t>')
+          the newly created `<cairo-pattern-t>' if successful, or an error
+          should call `cairo-pattern-destroy' when finished with it. This
+          pattern use `cairo-pattern-status'.
+cairo-pattern-create-rgba
+- Function: cairo-pattern-create-rgba (RED `<double>')(GREEN `<double>')(BLUE
+`<double>')(ALPHA `<double>') ==>(RET `<cairo-pattern-t>')
+          the newly created `<cairo-pattern-t>' if successful, or an error
+          should call `cairo-pattern-destroy' when finished with it. This
+          pattern use `cairo-pattern-status'.
+cairo-pattern-get-rgba
+- Function: cairo-pattern-get-rgba (PATTERN `<cairo-pattern-t>') ==>(RET
+`<cairo-status-t>')(RED `<double>')(GREEN `<double>')(BLUE `<double>')(ALPHA
+          a `<cairo-pattern-t>'
+cairo-pattern-create-for-surface
+- Function: cairo-pattern-create-for-surface (SURFACE `<cairo-surface-t>')
+==>(RET `<cairo-pattern-t>')
+          the newly created `<cairo-pattern-t>' if successful, or an error
+          should call `cairo-pattern-destroy' when finished with it. This
+          pattern use `cairo-pattern-status'.
+cairo-pattern-get-surface
+- Function: cairo-pattern-get-surface (PATTERN `<cairo-pattern-t>') ==>(RET
+`<cairo-status-t>')(SURFACE `<cairo-surface-t*>')
+     owned by the pattern; the caller should call `cairo-surface-reference' if
+          a `<cairo-pattern-t>'
+cairo-pattern-create-linear
+- Function: cairo-pattern-create-linear (X0 `<double>')(Y0 `<double>')(X1
+`<double>')(Y1 `<double>') ==>(RET `<cairo-pattern-t>')
+     stops should be defined using `cairo-pattern-add-color-stop-rgb' or
+     `cairo-pattern-add-color-stop-rgba'.
+     can be changed with `cairo-pattern-set-matrix'.
+          the newly created `<cairo-pattern-t>' if successful, or an error
+          should call `cairo-pattern-destroy' when finished with it. This
+          pattern use `cairo-pattern-status'.
+cairo-pattern-get-linear-points
+- Function: cairo-pattern-get-linear-points (PATTERN `<cairo-pattern-t>')
+==>(RET `<cairo-status-t>')(X0 `<double>')(Y0 `<double>')(X1 `<double>')(Y1
+          a `<cairo-pattern-t>'
+cairo-pattern-create-radial
+- Function: cairo-pattern-create-radial (CX0 `<double>')(CY0 `<double>')(RADIUS0
+`<cairo-pattern-t>')
+     `cairo-pattern-add-color-stop-rgb' or `cairo-pattern-add-color-stop-rgba'.
+     can be changed with `cairo-pattern-set-matrix'.
+          the newly created `<cairo-pattern-t>' if successful, or an error
+          should call `cairo-pattern-destroy' when finished with it. This
+          pattern use `cairo-pattern-status'.
+cairo-pattern-get-radial-circles
+- Function: cairo-pattern-get-radial-circles (PATTERN `<cairo-pattern-t>')
+==>(RET `<cairo-status-t>')(X0 `<double>')(Y0 `<double>')(R0 `<double>')(X1
+          a `<cairo-pattern-t>'
+cairo-pattern-set-extend
+- Function: cairo-pattern-set-extend (PATTERN `<cairo-pattern-t>')(EXTEND
+`<cairo-extend-t>')
+     `<cairo-extend-t>' for details on the semantics of each extend strategy.
+          a `<cairo-pattern-t>'
+          a `<cairo-extend-t>' describing how the area outside of the pattern
+cairo-pattern-get-extend
+- Function: cairo-pattern-get-extend (PATTERN `<cairo-pattern-t>') ==>(RET
+`<cairo-extend-t>')
+     Gets the current extend mode for a pattern. See `<cairo-extend-t>' for
+          a `<cairo-pattern-t>'
+cairo-pattern-set-filter
+- Function: cairo-pattern-set-filter (PATTERN `<cairo-pattern-t>')(FILTER
+`<cairo-filter-t>')
+     `<cairo-filter-t>' for details on each filter.
+          a `<cairo-pattern-t>'
+          a `<cairo-filter-t>' describing the filter to use for resizing the
+cairo-pattern-get-filter
+- Function: cairo-pattern-get-filter (PATTERN `<cairo-pattern-t>') ==>(RET
+`<cairo-filter-t>')
+     Gets the current filter for a pattern. See `<cairo-filter-t>' for details
+          a `<cairo-pattern-t>'
+cairo-pattern-set-matrix
+- Function: cairo-pattern-set-matrix (PATTERN `<cairo-pattern-t>')(MATRIX
+`<cairo-matrix-t>')
+     `cairo-set-source'.
+          a `<cairo-pattern-t>'
+          a `<cairo-matrix-t>'
+cairo-pattern-get-matrix
+- Function: cairo-pattern-get-matrix (PATTERN `<cairo-pattern-t>')(MATRIX
+`<cairo-matrix-t>')
+          a `<cairo-pattern-t>'
+cairo-pattern-get-type
+- Function: cairo-pattern-get-type (PATTERN `<cairo-pattern-t>') ==>(RET
+`<cairo-pattern-type-t>')
+     This function returns the type a pattern. See `<cairo-pattern-type-t>' for
+          a `<cairo-pattern-t>'
+cairo-pdf-surface-create
+- Function: cairo-pdf-surface-create (FILENAME `<char>')(WIDTH-IN-POINTS
+`<double>')(HEIGHT-IN-POINTS `<double>') ==>(RET `<cairo-surface-t>')
+          `cairo-surface-status' to check for this.
+cairo-pdf-surface-set-size
+- Function: cairo-pdf-surface-set-size (SURFACE
+`<cairo-surface-t>')(WIDTH-IN-POINTS `<double>')(HEIGHT-IN-POINTS `<double>')
+     completing a page with either `cairo-show-page' or `cairo-copy-page'.
+cairo-image-surface-create-from-png
+- Function: cairo-image-surface-create-from-png (FILENAME `<char>') ==>(RET
+`<cairo-surface-t>')
+          a new `<cairo-surface-t>' initialized with the contents of the PNG
+cairo-surface-write-to-png
+- Function: cairo-surface-write-to-png (SURFACE `<cairo-surface-t>')(FILENAME
+`<char>') ==>(RET `<cairo-status-t>')
+          a `<cairo-surface-t>' with pixel contents
+cairo-ps-surface-create
+- Function: cairo-ps-surface-create (FILENAME `<char>')(WIDTH-IN-POINTS
+`<double>')(HEIGHT-IN-POINTS `<double>') ==>(RET `<cairo-surface-t>')
+     to FILENAME. See `cairo-ps-surface-create-for-stream' for a more flexible
+     See `cairo-ps-surface-set-size'.
+          `cairo-surface-status' to check for this.
+cairo-ps-surface-set-size
+- Function: cairo-ps-surface-set-size (SURFACE
+`<cairo-surface-t>')(WIDTH-IN-POINTS `<double>')(HEIGHT-IN-POINTS `<double>')
+     completing a page with either `cairo-show-page' or `cairo-copy-page'.
+cairo-ps-surface-dsc-comment
+- Function: cairo-ps-surface-dsc-comment (SURFACE `<cairo-surface-t>')(COMMENT
+     `cairo-ps-surface-begin-setup'.
+     after a call to `cairo-ps-surface-begin-setup' but before a call to
+     `cairo-ps-surface-begin-page-setup'.
+     called after a call to `cairo-ps-surface-begin-page-setup'.
+     Note that it is only necessary to call `cairo-ps-surface-begin-page-setup'
+     for the first page of any surface. After a call to `cairo-show-page' or
+     `cairo-copy-page' comments are unambiguously directed to the PageSetup
+cairo-scaled-font-create
+- Function: cairo-scaled-font-create (FONT-FACE
+`<cairo-font-face-t>')(FONT-MATRIX `<cairo-matrix-t>')(CTM
+`<cairo-matrix-t>')(OPTIONS `<cairo-font-options-t>') ==>(RET
+`<cairo-scaled-font-t>')
+     Creates a `<cairo-scaled-font-t>' object from a font face and matrices that
+          a `<cairo-font-face-t>'
+          the two axes. See `cairo-set-font-matrix'.
+          a newly created `<cairo-scaled-font-t>'. Destroy with
+          `cairo-scaled-font-destroy'
+cairo-scaled-font-extents
+- Function: cairo-scaled-font-extents (SCALED-FONT
+`<cairo-scaled-font-t>')(EXTENTS `<cairo-font-extents-t>')
+     Gets the metrics for a `<cairo-scaled-font-t>'.
+          a `<cairo-scaled-font-t>'
+          a `<cairo-font-extents-t>' which to store the retrieved extents.
+cairo-scaled-font-text-extents
+- Function: cairo-scaled-font-text-extents (SCALED-FONT
+`<cairo-scaled-font-t>')(UTF8 `<char>')(EXTENTS `<cairo-text-extents-t>')
+     (0,0) (as it would be drawn by `cairo-show-text' if the cairo graphics
+     amount by which the current point would be advanced by `cairo-show-text'.
+          a `<cairo-scaled-font-t>'
+          a `<cairo-text-extents-t>' which to store the retrieved extents.
+cairo-scaled-font-glyph-extents
+- Function: cairo-scaled-font-glyph-extents (SCALED-FONT
+`<cairo-scaled-font-t>')(GLYPHS `<cairo-glyph-t>')(NUM-GLYPHS `<int>')(EXTENTS
+`<cairo-text-extents-t>')
+     be drawn by `cairo-show-glyphs' if the cairo graphics state were set to the
+          a `<cairo-scaled-font-t>'
+          a `<cairo-text-extents-t>' which to store the retrieved extents.
+cairo-scaled-font-get-font-face
+- Function: cairo-scaled-font-get-font-face (SCALED-FONT
+`<cairo-scaled-font-t>') ==>(RET `<cairo-font-face-t>')
+          a `<cairo-scaled-font-t>'
+          The `<cairo-font-face-t>' with which SCALED-FONT was created.
+cairo-scaled-font-get-font-options
+- Function: cairo-scaled-font-get-font-options (SCALED-FONT
+`<cairo-scaled-font-t>')(OPTIONS `<cairo-font-options-t>')
+          a `<cairo-scaled-font-t>'
+cairo-scaled-font-get-font-matrix
+- Function: cairo-scaled-font-get-font-matrix (SCALED-FONT
+`<cairo-scaled-font-t>')(FONT-MATRIX `<cairo-matrix-t>')
+          a `<cairo-scaled-font-t>'
+cairo-scaled-font-get-ctm
+- Function: cairo-scaled-font-get-ctm (SCALED-FONT `<cairo-scaled-font-t>')(CTM
+`<cairo-matrix-t>')
+          a `<cairo-scaled-font-t>'
+cairo-scaled-font-get-type
+- Function: cairo-scaled-font-get-type (SCALED-FONT `<cairo-scaled-font-t>')
+==>(RET `<cairo-font-type-t>')
+     See `<cairo-font-type-t>' for available types.
+          a `<cairo-scaled-font-t>'
+cairo-surface-create-similar
+- Function: cairo-surface-create-similar (OTHER `<cairo-surface-t>')(CONTENT
+`<cairo-content-t>')(WIDTH `<int>')(HEIGHT `<int>') ==>(RET `<cairo-surface-t>')
+     type of the returned surface may be examined with `cairo-surface-get-type'.
+cairo-surface-finish
+- Function: cairo-surface-finish (SURFACE `<cairo-surface-t>')
+     `cairo-surface-finish' the only valid operations on a surface are getting
+     When the last call to `cairo-surface-destroy' decreases the reference count
+     to zero, cairo will call `cairo-surface-finish' if it hasn't been called
+          the `<cairo-surface-t>' to finish
+cairo-surface-flush
+- Function: cairo-surface-flush (SURFACE `<cairo-surface-t>')
+          a `<cairo-surface-t>'
+cairo-surface-get-font-options
+- Function: cairo-surface-get-font-options (SURFACE `<cairo-surface-t>')(OPTIONS
+`<cairo-font-options-t>')
+     can then be used with `cairo-scaled-font-create'.
+          a `<cairo-surface-t>'
+          a `<cairo-font-options-t>' object into which to store the retrieved
+cairo-surface-get-content
+- Function: cairo-surface-get-content (SURFACE `<cairo-surface-t>') ==>(RET
+`<cairo-content-t>')
+     `<cairo-content-t>'.
+          a `<cairo-surface-t>'
+cairo-surface-mark-dirty
+- Function: cairo-surface-mark-dirty (SURFACE `<cairo-surface-t>')
+     call `cairo-surface-flush' before doing such drawing.
+          a `<cairo-surface-t>'
+cairo-surface-mark-dirty-rectangle
+- Function: cairo-surface-mark-dirty-rectangle (SURFACE `<cairo-surface-t>')(X
+     Like `cairo-surface-mark-dirty', but drawing has been done only to the
+          a `<cairo-surface-t>'
+cairo-surface-set-device-offset
+- Function: cairo-surface-set-device-offset (SURFACE
+`<cairo-surface-t>')(X-OFFSET `<double>')(Y-OFFSET `<double>')
+     to create a `<cairo-surface-t>' that redirects drawing for a portion of an
+     `cairo-translate' isn't sufficient to do this, since functions like
+     `cairo-device-to-user' will expose the hidden offset.
+          a `<cairo-surface-t>'
+cairo-surface-get-device-offset
+- Function: cairo-surface-get-device-offset (SURFACE `<cairo-surface-t>')
+     `cairo-surface-set-device-offset'.
+          a `<cairo-surface-t>'
+cairo-surface-get-type
+- Function: cairo-surface-get-type (SURFACE `<cairo-surface-t>') ==>(RET
+`<cairo-surface-type-t>')
+     `<cairo-surface-type-t>' for available types.
+          a `<cairo-surface-t>'
+cairo-svg-surface-create
+- Function: cairo-svg-surface-create (FILENAME `<char>')(WIDTH-IN-POINTS
+`<double>')(HEIGHT-IN-POINTS `<double>') ==>(RET `<cairo-surface-t>')
+          `cairo-surface-status' to check for this.
+cairo-select-font-face
+- Function: cairo-select-font-face (CR `<cairo-t>')(FAMILY `<char>')(SLANT
+`<cairo-font-slant-t>')(WEIGHT `<cairo-font-weight-t>')
+          a `<cairo-t>'
+cairo-set-font-size
+- Function: cairo-set-font-size (CR `<cairo-t>')(SIZE `<double>')
+     font matrix previously set with `cairo-set-font-size' or
+     `cairo-set-font-matrix'. This results in a font size of SIZE user space
+          a `<cairo-t>'
+cairo-set-font-matrix
+- Function: cairo-set-font-matrix (CR `<cairo-t>')(MATRIX `<cairo-matrix-t>')
+     used (see `cairo-set-font-size'), but a more complex font matrix can be
+          a `<cairo-t>'
+          a `<cairo-matrix-t>' describing a transform to be applied to the
+cairo-get-font-matrix
+- Function: cairo-get-font-matrix (CR `<cairo-t>')(MATRIX `<cairo-matrix-t>')
+     Stores the current font matrix into MATRIX. See `cairo-set-font-matrix'.
+          a `<cairo-t>'
+cairo-set-font-options
+- Function: cairo-set-font-options (CR `<cairo-t>')(OPTIONS
+`<cairo-font-options-t>')
+     Sets a set of custom font rendering options for the `<cairo-t>'. Rendering
+          a `<cairo-t>'
+cairo-get-font-options
+- Function: cairo-get-font-options (CR `<cairo-t>')(OPTIONS
+`<cairo-font-options-t>')
+     Retrieves font rendering options set via `<cairo-set-font-options>'. Note
+     `cairo-set-font-options'.
+          a `<cairo-t>'
+          a `<cairo-font-options-t>' object into which to store the retrieved
+cairo-set-font-face
+- Function: cairo-set-font-face (CR `<cairo-t>')(FONT-FACE
+`<cairo-font-face-t>')
+     Replaces the current `<cairo-font-face-t>' object in the `<cairo-t>' with
+     FONT-FACE. The replaced font face in the `<cairo-t>' will be destroyed if
+          a `<cairo-t>'
+          a `<cairo-font-face-t>', or ``#f'' to restore to the default font
+cairo-get-font-face
+- Function: cairo-get-font-face (CR `<cairo-t>') ==>(RET `<cairo-font-face-t>')
+     Gets the current font face for a `<cairo-t>'.
+          a `<cairo-t>'
+          special "nil" `<cairo-font-face-t>' object will be returned on which
+          `cairo-font-face-status' returns `CAIRO_STATUS_NO_MEMORY'. Using this
+          is passed to, (for example, calling `cairo-set-font-face' with a nil
+cairo-set-scaled-font
+- Function: cairo-set-scaled-font (CR `<cairo-t>')(SCALED-FONT
+`<cairo-scaled-font-t>')
+     `<cairo-t>' with those of the `<cairo-scaled-font-t>'. Except for some
+     translation, the current CTM of the `<cairo-t>' should be the same as that
+     of the `<cairo-scaled-font-t>', which can be accessed using
+     `cairo-scaled-font-get-ctm'.
+          a `<cairo-t>'
+          a `<cairo-scaled-font-t>'
+cairo-get-scaled-font
+- Function: cairo-get-scaled-font (CR `<cairo-t>') ==>(RET
+`<cairo-scaled-font-t>')
+     Gets the current scaled font for a `<cairo-t>'.
+          a `<cairo-t>'
+          reference to it, you must call `cairo-scaled-font-reference'. This
+          special "nil" `<cairo-scaled-font-t>' object will be returned on which
+          `cairo-scaled-font-status' returns `CAIRO_STATUS_NO_MEMORY'. Using
+          objects it is passed to, (for example, calling `cairo-set-scaled-font'
+cairo-show-text
+- Function: cairo-show-text (CR `<cairo-t>')(UTF8 `<char>')
+     `cairo-show-text'.
+     NOTE: The `cairo-show-text' function call is part of what the cairo
+     text-using applications. See `cairo-show-glyphs' for the "real" text
+cairo-show-glyphs
+- Function: cairo-show-glyphs (CR `<cairo-t>')(GLYPHS
+`<cairo-glyph-t>')(NUM-GLYPHS `<int>')
+cairo-font-extents
+- Function: cairo-font-extents (CR `<cairo-t>')(EXTENTS
+`<cairo-font-extents-t>')
+          a `<cairo-t>'
+          a `<cairo-font-extents-t>' object into which the results will be
+cairo-text-extents
+- Function: cairo-text-extents (CR `<cairo-t>')(UTF8 `<char>')(EXTENTS
+`<cairo-text-extents-t>')
+     drawn by `cairo-show-text'). Additionally, the x_advance and y_advance
+     `cairo-show-text'.
+          a `<cairo-t>'
+          a `<cairo-text-extents-t>' object into which the results will be
+cairo-glyph-extents
+- Function: cairo-glyph-extents (CR `<cairo-t>')(GLYPHS
+`<cairo-glyph-t>')(NUM-GLYPHS `<int>')(EXTENTS `<cairo-text-extents-t>')
+     be drawn by `cairo-show-glyphs'). Additionally, the x_advance and y_advance
+          a `<cairo-t>'
+          an array of `<cairo-glyph-t>' objects
+          a `<cairo-text-extents-t>' object into which the results will be
+cairo-translate
+- Function: cairo-translate (CR `<cairo-t>')(TX `<double>')(TY `<double>')
+cairo-scale
+- Function: cairo-scale (CR `<cairo-t>')(SX `<double>')(SY `<double>')
+cairo-rotate
+- Function: cairo-rotate (CR `<cairo-t>')(ANGLE `<double>')
+cairo-transform
+- Function: cairo-transform (CR `<cairo-t>')(MATRIX `<cairo-matrix-t>')
+cairo-set-matrix
+- Function: cairo-set-matrix (CR `<cairo-t>')(MATRIX `<cairo-matrix-t>')
+cairo-get-matrix
+- Function: cairo-get-matrix (CR `<cairo-t>')(MATRIX `<cairo-matrix-t>')
+cairo-identity-matrix
+- Function: cairo-identity-matrix (CR `<cairo-t>')
+cairo-user-to-device
+- Function: cairo-user-to-device (CR `<cairo-t>') ==>(X `<double>')(Y
+cairo-user-to-device-distance
+- Function: cairo-user-to-device-distance (CR `<cairo-t>') ==>(DX `<double>')(DY
+     is similar to `cairo-user-to-device' except that the translation components
+cairo-device-to-user
+- Function: cairo-device-to-user (CR `<cairo-t>') ==>(X `<double>')(Y
+cairo-device-to-user-distance
+- Function: cairo-device-to-user-distance (CR `<cairo-t>') ==>(DX `<double>')(DY
+     is similar to `cairo-device-to-user' except that the translation components
+cairo-version
+- Function: cairo-version ==>(RET `<int>')
+     See also `cairo-version-string' as well as the compile-time equivalents
+cairo-version-string
+- Function: cairo-version-string ==>(RET `<char>')
+     See also `cairo-version' as well as the compile-time equivalents
+cairo-create
+- Function: cairo-create (TARGET `<cairo-surface-t>') ==>(RET `<cairo-t>')
+     Creates a new `<cairo-t>' with all graphics state parameters set to default
+     `cairo-image-surface-create' (or any other `cairo_<backend>_surface_create'
+     `cairo-surface-destroy' on it if you don't need to maintain a separate
+          a newly allocated `<cairo-t>' with a reference count of 1. The initial
+          reference count should be released with `cairo-destroy' when you are
+          done using the `<cairo-t>'. This function never returns ``#f''. If
+          memory cannot be allocated, a special `<cairo-t>' object will be
+          returned on which `cairo-status' returns `CAIRO_STATUS_NO_MEMORY'. You
+cairo-save
+- Function: cairo-save (CR `<cairo-t>')
+     of saved states for CR. When `cairo-restore' is called, CR will be restored
+     to the saved state. Multiple calls to `cairo-save' and `cairo-restore' can
+     be nested; each call to `cairo-restore' restores the state from the
+     matching paired `cairo-save'.
+     It isn't necessary to clear all saved states before a `<cairo-t>' is freed.
+     If the reference count of a `<cairo-t>' drops to zero in response to a call
+     to `cairo-destroy', any saved states will be freed along with the
+     `<cairo-t>'.
+          a `<cairo-t>'
+cairo-restore
+- Function: cairo-restore (CR `<cairo-t>')
+     Restores CR to the state saved by a preceding call to `cairo-save' and
+          a `<cairo-t>'
+cairo-get-target
+- Function: cairo-get-target (CR `<cairo-t>') ==>(RET `<cairo-surface-t>')
+     Gets the target surface for the cairo context as passed to `cairo-create'.
+     `cairo-status'`!='`CAIRO_STATUS_SUCCESS'). A nil surface is indicated by
+     `cairo-surface-status'`!='`CAIRO_STATUS_SUCCESS'.
+          to it, you must call `cairo-surface-reference'.
+cairo-push-group
+- Function: cairo-push-group (CR `<cairo-t>')
+     `cairo-pop-group' or `cairo-pop-group-to-source'. These calls provide the
+     `cairo-push-group'/`cairo-pop-group'. Each call pushes/pops the new target
+     The `cairo-push-group' function calls `cairo-save' so that any changes to
+     functions call `cairo-restore').
+     by using `cairo-push-group-with-content' instead.
+cairo-pop-group
+- Function: cairo-pop-group (CR `<cairo-t>') ==>(RET `<cairo-pattern-t>')
+     Terminates the redirection begun by a call to `cairo-push-group' or
+     `cairo-push-group-with-content' and returns a new pattern containing the
+     The `cairo-pop-group' function calls `cairo-restore', (balancing a call to
+     `cairo-save' by the push_group function), so that any changes to the
+          returned object and should call `cairo-pattern-destroy' when finished
+cairo-pop-group-to-source
+- Function: cairo-pop-group-to-source (CR `<cairo-t>')
+     Terminates the redirection begun by a call to `cairo-push-group' or
+     `cairo-push-group-with-content' and installs the resulting pattern as the
+     The `cairo-pop-group' function calls `cairo-restore', (balancing a call to
+     `cairo-save' by the push_group function), so that any changes to the
+cairo-get-group-target
+- Function: cairo-get-group-target (CR `<cairo-t>') ==>(RET `<cairo-surface-t>')
+     call to `cairo-push-group' or `cairo-push-group-with-content'.
+     blocks, (that is, after the last balancing call to `cairo-pop-group' or
+     `cairo-pop-group-to-source').
+          `cairo-surface-reference'.
+cairo-set-source-rgb
+- Function: cairo-set-source-rgb (CR `<cairo-t>')(RED `<double>')(GREEN
+cairo-set-source-rgba
+- Function: cairo-set-source-rgba (CR `<cairo-t>')(RED `<double>')(GREEN
+cairo-set-source
+- Function: cairo-set-source (CR `<cairo-t>')(SOURCE `<cairo-pattern-t>')
+     in effect at the time of `cairo-set-source'. This means that further
+     source pattern. See `cairo-pattern-set-matrix'.
+          a `<cairo-pattern-t>' to be used as the source for subsequent drawing
+cairo-set-source-surface
+- Function: cairo-set-source-surface (CR `<cairo-t>')(SURFACE
+`<cairo-surface-t>')(X `<double>')(Y `<double>')
+     setting it as the source in CR with `cairo-set-source'.
+     values as in `cairo-pattern-create-for-surface'. The resulting pattern can
+     be queried with `cairo-get-source' so that these attributes can be modified
+     `cairo-pattern-set-extend').
+cairo-get-source
+- Function: cairo-get-source (CR `<cairo-t>') ==>(RET `<cairo-pattern-t>')
+          reference to it, you must call `cairo-pattern-reference'.
+cairo-set-antialias
+- Function: cairo-set-antialias (CR `<cairo-t>')(ANTIALIAS
+`<cairo-antialias-t>')
+     `cairo-font-options-set-antialias'.
+          a `<cairo-t>'
+cairo-get-antialias
+- Function: cairo-get-antialias (CR `<cairo-t>') ==>(RET `<cairo-antialias-t>')
+     `cairo-set-shape-antialias'.
+cairo-set-dash
+- Function: cairo-set-dash (CR `<cairo-t>') ==>(DASHES `<double>')(NUM-DASHES
+     Sets the dash pattern to be used by `cairo-stroke'. A dash pattern is
+     `cairo-set-dash'.
+     `<cairo-status-invalid-dash>'.
+cairo-get-dash-count
+- Function: cairo-get-dash-count (CR `<cairo-t>') ==>(RET `<int>')
+     See also `cairo-set-dash' and `cairo-get-dash'.
+          a `<cairo-t>'
+cairo-set-fill-rule
+- Function: cairo-set-fill-rule (CR `<cairo-t>')(FILL-RULE
+`<cairo-fill-rule-t>')
+     cairo_clip. See `<cairo-fill-rule-t>' for details on the semantics of each
+          a `<cairo-t>'
+          a fill rule, specified as a `<cairo-fill-rule-t>'
+cairo-get-fill-rule
+- Function: cairo-get-fill-rule (CR `<cairo-t>') ==>(RET `<cairo-fill-rule-t>')
+     Gets the current fill rule, as set by `cairo-set-fill-rule'.
+cairo-set-line-cap
+- Function: cairo-set-line-cap (CR `<cairo-t>')(LINE-CAP `<cairo-line-cap-t>')
+     `<cairo-line-cap-t>' for details about how the available line cap styles
+     by `cairo-stroke', `cairo-stroke-extents', and `cairo-stroke-to-path', but
+cairo-get-line-cap
+- Function: cairo-get-line-cap (CR `<cairo-t>') ==>(RET `<cairo-line-cap-t>')
+     Gets the current line cap style, as set by `cairo-set-line-cap'.
+cairo-set-line-join
+- Function: cairo-set-line-join (CR `<cairo-t>')(LINE-JOIN
+`<cairo-line-join-t>')
+     `<cairo-line-join-t>' for details about how the available line join styles
+     examined by `cairo-stroke', `cairo-stroke-extents', and
+     `cairo-stroke-to-path', but does not have any effect during path
+cairo-get-line-join
+- Function: cairo-get-line-join (CR `<cairo-t>') ==>(RET `<cairo-line-join-t>')
+     Gets the current line join style, as set by `cairo-set-line-join'.
+cairo-set-line-width
+- Function: cairo-set-line-width (CR `<cairo-t>')(WIDTH `<double>')
+     `cairo-set-line-width'. The simplest usage makes both of these spaces
+     `cairo-set-line-with' and the stroking operation, then one can just pass
+     user-space values to `cairo-set-line-width' and ignore this note.
+     `cairo-stroke', `cairo-stroke-extents', and `cairo-stroke-to-path', but
+          a `<cairo-t>'
+cairo-get-line-width
+- Function: cairo-get-line-width (CR `<cairo-t>') ==>(RET `<double>')
+     `cairo-set-line-width'. Note that the value is unchanged even if the CTM
+     has changed between the calls to `cairo-set-line-width' and
+     `cairo-get-line-width'.
+cairo-set-miter-limit
+- Function: cairo-set-miter-limit (CR `<cairo-t>')(LIMIT `<double>')
+     `cairo-set-line-join'), the miter limit is used to determine whether the
+     examined by `cairo-stroke', `cairo-stroke-extents', and
+     `cairo-stroke-to-path', but does not have any effect during path
+cairo-get-miter-limit
+- Function: cairo-get-miter-limit (CR `<cairo-t>') ==>(RET `<double>')
+     Gets the current miter limit, as set by `cairo-set-miter-limit'.
+cairo-set-operator
+- Function: cairo-set-operator (CR `<cairo-t>')(OP `<cairo-operator-t>')
+     `<cairo-operator-t>' for details on the semantics of each available
+          a `<cairo-t>'
+          a compositing operator, specified as a `<cairo-operator-t>'
+cairo-get-operator
+- Function: cairo-get-operator (CR `<cairo-t>') ==>(RET `<cairo-operator-t>')
+cairo-set-tolerance
+- Function: cairo-set-tolerance (CR `<cairo-t>')(TOLERANCE `<double>')
+          a `<cairo-t>'
+cairo-get-tolerance
+- Function: cairo-get-tolerance (CR `<cairo-t>') ==>(RET `<double>')
+     Gets the current tolerance value, as set by `cairo-set-tolerance'.
+cairo-clip
+- Function: cairo-clip (CR `<cairo-t>')
+     the current path as it would be filled by `cairo-fill' and according to the
+     current fill rule (see `cairo-set-fill-rule').
+     Calling `cairo-clip' can only make the clip region smaller, never larger.
+     restriction of the clip region can be achieved by calling `cairo-clip'
+     within a `cairo-save'/`cairo-restore' pair. The only other means of
+     increasing the size of the clip region is `cairo-reset-clip'.
+cairo-clip-preserve
+- Function: cairo-clip-preserve (CR `<cairo-t>')
+     the current path as it would be filled by `cairo-fill' and according to the
+     current fill rule (see `cairo-set-fill-rule').
+     Unlike `cairo-clip', cairo_clip_preserve preserves the path within the
+     Calling `cairo-clip' can only make the clip region smaller, never larger.
+     restriction of the clip region can be achieved by calling `cairo-clip'
+     within a `cairo-save'/`cairo-restore' pair. The only other means of
+     increasing the size of the clip region is `cairo-reset-clip'.
+cairo-clip-extents
+- Function: cairo-clip-extents (CR `<cairo-t>') ==>(X1 `<double>')(Y1
+cairo-reset-clip
+- Function: cairo-reset-clip (CR `<cairo-t>')
+     Note that code meant to be reusable should not call `cairo-reset-clip' as
+     `cairo-clip'. Consider using `cairo-save' and `cairo-restore' around
+     `cairo-clip' as a more robust means of temporarily restricting the clip
+cairo-copy-clip-rectangle-list
+- Function: cairo-copy-clip-rectangle-list (CR `<cairo-t>') ==>(RET
+`<cairo-rectangle-list-t>')
+cairo-fill
+- Function: cairo-fill (CR `<cairo-t>')
+     `cairo-set-fill-rule' and `cairo-fill-preserve'.
+cairo-fill-preserve
+- Function: cairo-fill-preserve (CR `<cairo-t>')
+     `cairo-fill', cairo_fill_preserve preserves the path within the cairo
+     See `cairo-set-fill-rule' and `cairo-fill'.
+cairo-fill-extents
+- Function: cairo-fill-extents (CR `<cairo-t>') ==>(X1 `<double>')(Y1
+     affected by a `cairo-fill' operation given the current path and fill
+     See `cairo-fill', `cairo-set-fill-rule' and `cairo-fill-preserve'.
+cairo-in-fill
+- Function: cairo-in-fill (CR `<cairo-t>')(X `<double>')(Y `<double>') ==>(RET
+`<cairo-bool-t>')
+     a `cairo-fill' operation given the current path and filling parameters.
+     See `cairo-fill', `cairo-set-fill-rule' and `cairo-fill-preserve'.
+cairo-mask
+- Function: cairo-mask (CR `<cairo-t>')(PATTERN `<cairo-pattern-t>')
+          a `<cairo-pattern-t>'
+cairo-mask-surface
+- Function: cairo-mask-surface (CR `<cairo-t>')(SURFACE
+`<cairo-surface-t>')(SURFACE-X `<double>')(SURFACE-Y `<double>')
+          a `<cairo-surface-t>'
+cairo-paint
+- Function: cairo-paint (CR `<cairo-t>')
+cairo-paint-with-alpha
+- Function: cairo-paint-with-alpha (CR `<cairo-t>')(ALPHA `<double>')
+     is similar to `cairo-paint', but the drawing is faded out using the alpha
+cairo-stroke
+- Function: cairo-stroke (CR `<cairo-t>')
+     `cairo-set-line-width', `cairo-set-line-join', `cairo-set-line-cap',
+     `cairo-set-dash', and `cairo-stroke-preserve'.
+     1. Zero-length "on" segments set in `cairo-set-dash'. If the cap style is
+     2. A sub-path created by `cairo-move-to' followed by either a
+     `cairo-close-path' or one or more calls to `cairo-line-to' to the same
+     coordinate as the `cairo-move-to'. If the cap style is CAIRO_LINE_CAP_ROUND
+cairo-stroke-preserve
+- Function: cairo-stroke-preserve (CR `<cairo-t>')
+     line width, line join, line cap, and dash settings. Unlike `cairo-stroke',
+     See `cairo-set-line-width', `cairo-set-line-join', `cairo-set-line-cap',
+     `cairo-set-dash', and `cairo-stroke-preserve'.
+cairo-stroke-extents
+- Function: cairo-stroke-extents (CR `<cairo-t>') ==>(X1 `<double>')(Y1
+     affected by a `cairo-stroke' operation operation given the current path and
+cairo-in-stroke
+- Function: cairo-in-stroke (CR `<cairo-t>')(X `<double>')(Y `<double>') ==>(RET
+`<cairo-bool-t>')
+     a `cairo-stroke' operation given the current path and stroking parameters.
+     See `cairo-stroke', `cairo-set-line-width', `cairo-set-line-join',
+     `cairo-set-line-cap', `cairo-set-dash', and `cairo-stroke-preserve'.
+cairo-copy-page
+- Function: cairo-copy-page (CR `<cairo-t>')
+     the next page too. Use `cairo-show-page' if you want to get an empty page
+cairo-show-page
+- Function: cairo-show-page (CR `<cairo-t>')
+     Use `cairo-copy-page' if you don't want to clear the page.
